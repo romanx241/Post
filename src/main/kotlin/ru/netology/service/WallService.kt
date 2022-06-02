@@ -2,34 +2,25 @@ package ru.netology.service
 import ru.netology.data.Post
 
 
-object WallService {
-
-
-    private var instance: WallService? = null
-
-    fun getInstance(): WallService {
-        if (instance == null) {
-            instance = WallService
-        }
-        return instance!!
-    }
-
+class WallService {
 
     var posts = emptyArray<Post>()
     var propertyId = 0
 
     fun add(post: Post): Post {
         propertyId++
-        post.id = propertyId.toLong()
-        posts += post
+        val addPost = post.copy(id = propertyId)
+        posts += addPost
         return posts.last()
     }
 
-    fun update(post: Post): Boolean {
-        val id = 2L
-        for ((index, post) in posts.withIndex()) {
-            if (post.id == id) {
-                posts[index] = post
+    //обновление всех свойств поста, кроме id владельца и даты создания
+
+    fun update(post: Post, updateWork: Post): Boolean {
+        for ((index, item) in posts.withIndex()) {
+            if (item.id == post.id) {
+                posts[index].ownerId = updateWork.ownerId
+                posts[index].fromId = updateWork.fromId
                 return true
             }
         }

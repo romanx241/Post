@@ -1,22 +1,19 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.6.21'
-    id 'java'
+    id "java"
+    id "jacoco"
+    id "org.jetbrains.kotlin.jvm" version "1.6.21"
 }
 
-group 'ru.netology.domain'
-version '1.0-SNAPSHOT'
+group "ru.netology"
+version "1.0-SNAPSHOT"
 
 repositories {
-    mavenCentral()
     mavenCentral()
 }
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-}
+    // https://mvnrepository.com/artifact/junit/junit
+    testImplementation "junit:junit:4.13.2"
 
-test {
-    useJUnitPlatform()
 }
